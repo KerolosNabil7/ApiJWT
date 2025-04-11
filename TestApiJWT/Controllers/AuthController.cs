@@ -16,7 +16,7 @@ namespace TestApiJWT.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]RegisterModel model)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             //Check the model coming from the body validity
             if (!ModelState.IsValid)
@@ -48,6 +48,24 @@ namespace TestApiJWT.Controllers
                 return BadRequest(result.Message);
 
             return Ok(result);
+        }
+
+
+        [HttpPost("AddRole")]
+        public async Task<IActionResult> AddRoleAsync(AddRoleModel model)
+        {
+            //Check the model coming from the body validity
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //Check result of the AddRole Method
+            var result = await _authService.AddRoleAsync(model);
+            if (!string.IsNullOrEmpty(result)) 
+                return BadRequest(result);
+            
+            return Ok(model);
         }
     }
 }

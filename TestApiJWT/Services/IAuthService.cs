@@ -8,5 +8,7 @@ namespace TestApiJWT.Services
 
         //Get Token mmken bl username w mmken bl email 
         Task<AuthModel> GetTokenAsync(TokenRequestModel model);
+
+        Task<string> AddRoleAsync(AddRoleModel model);
     }
 }
