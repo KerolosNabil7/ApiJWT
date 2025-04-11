@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestApiJWT.Models;
 using TestApiJWT.Services;
@@ -50,7 +51,7 @@ namespace TestApiJWT.Controllers
             return Ok(result);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddRole")]
         public async Task<IActionResult> AddRoleAsync(AddRoleModel model)
         {
